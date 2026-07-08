@@ -220,9 +220,10 @@ arrival.  The internal clipboard (used for fast self-paste) stays in
 CP437.  Unmapped codepoints pasted from external applications become
 `?` with a warning.
 
-TODO: If anybody has feedback on this importer, specific to elections I 
+**TODO:** If anybody has feedback on this importer, specific to elections I 
 made I would be happy to expand the importer or consider any substitution.
 this worked for my usecase but may not for everyone.
+
 ---
 
 ## Syntax Highlighting
