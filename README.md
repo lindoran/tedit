@@ -7,6 +7,7 @@ external dependencies beyond Xlib and the sources bundled here.
 
 I made this to work on a specific project which is done now, if 
 its useful to you please enjoy!
+
 ---
 
 ## Building
