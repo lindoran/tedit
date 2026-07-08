@@ -1,0 +1,33 @@
+# Zilog Z80 assembly syntax definition for tedit's highlighter.
+# Load with the editor's  :syntax lang/z80.csv  console command.
+
+name,z80
+ext,.asm,.s,.z80
+
+line_comment,;
+preproc,0
+labels,1
+case_insensitive,1
+
+register,A,B,C,D,E,H,L,F,I,R
+register,AF,BC,DE,HL,IX,IY,SP,PC
+register,IXH,IXL,IYH,IYL
+
+keyword,ADC,ADD,AND,BIT,CALL,CCF,CP,CPD,CPDR,CPI
+keyword,CPIR,CPL,DAA,DEC,DI,DJNZ,EI,EX,EXX,HALT
+keyword,IM,IN,INC,IND,INDR,INI,INIR,JP,JR,LD
+keyword,LDD,LDDR,LDI,LDIR,NEG,NOP,OR,OTDR,OTIR,OUT
+keyword,OUTD,OUTI,POP,PUSH,RES,RET,RETI,RETN,RL,RLA
+keyword,RLC,RLCA,RLD,RR,RRA,RRC,RRCA,RRD,RST,SBC
+keyword,SCF,SET,SLA,SRA,SRL,SUB,XOR
+keyword,DB,DW,DS,EQU,ORG,END
+
+color,text,0,7
+color,keyword,0,11
+color,register,0,9
+color,string,0,10
+color,comment,0,8
+color,number,0,14
+color,label,0,13
+color,operator,0,12
+color,bracket,0,15
