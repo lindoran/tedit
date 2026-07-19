@@ -4,7 +4,7 @@
 name,ansi-c
 ext,.c,.h
 
-line_comment,
+line_comment,//
 block_open,/*
 block_close,*/
 preproc,1

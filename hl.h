@@ -26,8 +26,8 @@
 #include <stdint.h>
 #include "buffer.h"
 
-/* 6809 is the fattest target at ~120 mnemonics; round up. */
-#define HL_MAX_KEYWORDS    128
+/* 6809+6309 combined is the fattest target (~200 mnemonics + directives). */
+#define HL_MAX_KEYWORDS    256
 /* Longest realistic entry is an ANSI C keyword ("continue", 8) or a
  * future Pascal-ism ("implementation", 14); 16 incl. NUL is safe. */
 #define HL_MAX_KW_LEN       16

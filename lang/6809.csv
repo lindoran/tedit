@@ -1,0 +1,174 @@
+# Motorola 6809 + Hitachi 6309 assembly syntax definition for tedit.
+# Covers all 6809 opcodes (including alias mnemonics ASL=LSL, BHS=BCC,
+# BLO=BCS and the full set of long-branch LBXX forms) plus every
+# documented 6309 extension opcode and common assembler directives.
+#
+# The combined keyword count exceeds the old HL_MAX_KEYWORDS default of 128.
+# hl.h has been updated to 256 to accommodate this file.
+#
+# Load with:  :syntax lang/6809.csv
+# Auto-detected for: .asm .s .a09 .6809 .6309
+
+name,6809
+ext,.asm,.s,.a09,.6809,.6309
+
+line_comment,;
+preproc,0
+labels,1
+case_insensitive,1
+
+# $ prefix for hex ($FF) and % prefix for binary (%10101010) are
+# recognised natively by the lexer without needing suffix config.
+
+# -----------------------------------------------------------------------
+# 6809 instructions
+# -----------------------------------------------------------------------
+
+# Load / store
+keyword,LDA,LDB,LDD,LDS,LDU,LDX,LDY
+keyword,STA,STB,STD,STS,STU,STX,STY
+
+# Effective address
+keyword,LEAX,LEAY,LEAS,LEAU
+
+# Register-to-register exchange and transfer
+keyword,EXG,TFR
+
+# Arithmetic
+keyword,ADDA,ADDB,ADDD
+keyword,ADCA,ADCB
+keyword,SUBA,SUBB,SUBD
+keyword,SBCA,SBCB
+keyword,MUL,DAA,SEX,ABX
+
+# Logic
+keyword,ANDA,ANDB,ANDCC
+keyword,ORA,ORB,ORCC
+keyword,EORA,EORB
+
+# Shift / rotate  (ASL is the historical alias for LSL; both are legal)
+keyword,LSL,LSLA,LSLB
+keyword,ASL,ASLA,ASLB
+keyword,LSR,LSRA,LSRB
+keyword,ASR,ASRA,ASRB
+keyword,ROL,ROLA,ROLB
+keyword,ROR,RORA,RORB
+
+# Single-operand (memory or accumulator)
+keyword,CLR,CLRA,CLRB
+keyword,COM,COMA,COMB
+keyword,NEG,NEGA,NEGB
+keyword,INC,INCA,INCB
+keyword,DEC,DECA,DECB
+keyword,TST,TSTA,TSTB
+
+# Short branches
+keyword,BRA,BRN,BSR
+keyword,BEQ,BNE,BMI,BPL,BVC,BVS
+keyword,BCC,BCS,BHI,BHS,BLO,BLS
+keyword,BGE,BGT,BLE,BLT
+
+# Long branches (16-bit offset; prefix LB)
+keyword,LBRA,LBRN,LBSR
+keyword,LBEQ,LBNE,LBMI,LBPL,LBVC,LBVS
+keyword,LBCC,LBCS,LBHI,LBHS,LBLO,LBLS
+keyword,LBGE,LBGT,LBLE,LBLT
+
+# Jump and subroutine
+keyword,JMP,JSR,RTS,RTI
+
+# Stack
+keyword,PSHS,PSHU,PULS,PULU
+
+# System / miscellaneous
+keyword,NOP,SYNC,CWAI
+keyword,SWI,SWI2,SWI3
+
+# -----------------------------------------------------------------------
+# Hitachi 6309 extensions
+# -----------------------------------------------------------------------
+
+# Extra registers: load / store  (E, F = 8-bit halves of W; Q = D:W 32-bit)
+keyword,LDE,LDF,LDW,LDQ
+keyword,STE,STF,STW,STQ
+
+# 16-bit sign extend
+keyword,SEXW
+
+# Mode / bit-address register
+keyword,LDMD,LDBT,STBT
+
+# Multiply / divide
+keyword,MULD,DIVD,DIVQ
+
+# Transfer memory  (TFM r+,r+  /  r-,r-  /  r+,r  /  r,r+)
+keyword,TFM
+
+# Immediate-to-memory logical ops  (AND/OR/EOR/AND-test direct or indexed)
+keyword,AIM,EIM,OIM,TIM
+
+# Bit-transfer between a register bit and a memory bit
+keyword,BAND,BEOR,BIAND,BIEOR,BIOR,BOR
+keyword,BITD,BITMD
+
+# E / F / W / D register: clear, complement, negate, test
+keyword,CLRD,CLRE,CLRF,CLRW
+keyword,COMD,COME,COMF,COMW
+keyword,NEGD,NEGE,NEGF,NEGW
+keyword,TSTD,TSTE,TSTF,TSTW
+
+# E / F / W / D register: increment / decrement
+keyword,INCE,INCF,INCW
+keyword,DECE,DECF,DECW
+
+# E / F / W register: shift / rotate
+keyword,LSLE,LSLF,LSLW
+keyword,LSRE,LSRF,LSRW
+keyword,ROLE,ROLF,ROLW
+keyword,RORE,RORF,RORW
+keyword,ASRE,ASRF
+
+# D register: logical shift (pseudo-mnemonics accepted by most assemblers)
+keyword,LSLD,LSRD
+
+# E / F / W register: subtract
+keyword,SUBE,SUBF,SUBW
+
+# Stack: push/pull the W register pair
+keyword,PSHSW,PSHUW,PULSW,PULUW
+
+# -----------------------------------------------------------------------
+# Common assembler directives
+# -----------------------------------------------------------------------
+keyword,ORG,END,EQU,SET,SETDP
+keyword,FCB,FDB,FCC,FCS,RMB,RZB
+keyword,DB,DW,DS,DC
+keyword,INCLUDE,NAM,PAG,OPT,ALIGN
+keyword,MACRO,ENDM
+keyword,IF,ELSE,ENDIF,IFD,IFND,IFC,IFNC
+
+# -----------------------------------------------------------------------
+# Registers  (6809 + 6309)
+# -----------------------------------------------------------------------
+
+# 6809: 8-bit accumulators, 16-bit index/stack/PC, condition codes, DP
+register,A,B,D,X,Y,U,S,PC,CC,DP
+
+# 6309: E and F are the 8-bit halves of W; W pairs with D to form Q (32-bit)
+register,E,F,W,Q
+
+# 6309: zero register and mode register
+register,V,MD
+
+# -----------------------------------------------------------------------
+# Colors  (bg, fg as VGA palette indices 0-15)
+# -----------------------------------------------------------------------
+color,text,     0,  7
+color,keyword,  0, 11
+color,register, 0,  9
+color,string,   0, 10
+color,comment,  0,  8
+color,number,   0, 14
+color,label,    0, 13
+color,operator, 0, 12
+color,bracket,  0, 15
